@@ -4,6 +4,14 @@ import my_music from '@/components/my_music.vue'
 import open_platform from '@/components/open_platform.vue'
 import client from '@/components/client.vue'
 import vip from '@/components/vip.vue'
+import category_playlists from '@/components/pavilion_children/category_playlists.vue'
+import charts from '@/components/pavilion_children/charts.vue'
+import digital_album from '@/components/pavilion_children/digital_album.vue'
+import home_page from '@/components/pavilion_children/home_page.vue'
+import ladar from '@/components/pavilion_children/ladar.vue'
+import mv from '@/components/pavilion_children/mv.vue'
+import new_disc from '@/components/pavilion_children/new_disc.vue'
+import singer from '@/components/pavilion_children/singer.vue'
 
 const router=createRouter(
     {
@@ -16,7 +24,49 @@ const router=createRouter(
             {
                 path:"/music_pavilion",
                 component:music_pavilion,
-                name:'music_pavilion'
+                name:'music_pavilion',
+                children:[
+                    {
+                        path:"home_page",
+                        component:home_page,
+                        name:'home_page'
+                    },
+                    {
+                        path:"singer",
+                        component:singer,
+                        name:'singer'
+                    },
+                    {
+                        path:"new_disc",
+                        component:new_disc,
+                        name:'new_disc'
+                    },
+                    {
+                        path:"charts",
+                        component:charts,
+                        name:'charts'
+                    },
+                    {
+                        path:"category_playlists",
+                        component:category_playlists,
+                        name:'category_playlists'
+                    },
+                    {
+                        path:"ladar",
+                        component:ladar,
+                        name:'ladar'
+                    },
+                    {
+                        path:"mv",
+                        component:mv,
+                        name:'mv'
+                    },
+                    {
+                        path:"digital_album",
+                        component:digital_album,
+                        name:'digital_album'
+                    },
+                ]
 
             },
             {

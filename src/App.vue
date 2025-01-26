@@ -121,6 +121,7 @@
     font-size: 18px;
     text-decoration: none;
     color: black;
+
   }
   .view{
     width: 100%;
