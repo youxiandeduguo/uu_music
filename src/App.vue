@@ -7,6 +7,34 @@
       <RouterLink to="/client" active-class="active">客户端</RouterLink>
       <RouterLink to="/open_platform" active-class="active">开放平台</RouterLink>
       <RouterLink to="/vip" active-class="active">VIP</RouterLink>
+      <div class="inputframe">
+        <el-input
+        v-model="input"
+        style="width: 200px;height: 40px;"
+        size="large"
+        placeholder="搜索音乐、MV、歌单、用户"
+        :suffix-icon="Search"
+      />
+
+      <el-button class="loginbutton">登录</el-button>
+      <el-select
+        v-model="value"
+        placeholder="开通VIP"
+        size="large"
+        class="vipbutton"
+        style="width: 120px"
+      >
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+
+      <button>充值</button>
+
+      </div>
     </div>
     <RouterView class="view"></RouterView>
   </div>
@@ -15,7 +43,9 @@
 
 
 <script lang="ts">
+  import { ref } from 'vue'
   import {RouterView,RouterLink} from 'vue-router'
+  import { Search } from '@element-plus/icons-vue'
   export default {
     name:'app'
   }
@@ -24,7 +54,19 @@
 
 <script setup lang="ts">
 
+  const input = ref('')
+  const value = ref('')
 
+  const options = [
+    {
+      value: 'Option1',
+      label: '开通超级会员',
+    },
+    {
+      value: 'Option2',
+      label: '开通绿钻豪华版',
+    },
+  ]
 
 
 
@@ -73,6 +115,25 @@
     
     width: 170px;
     height: 76px;
+  }
+  .inputframe{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .loginbutton {
+  border: none;
+  box-shadow: none;
+  background-color: white;
+  }
+
+  .loginbutton:hover{
+    background-color: transparent;
+    box-shadow: none;
+    color: #31c27c;
+  }
+  .vipbutton{
+    
   }
 
 </style>
