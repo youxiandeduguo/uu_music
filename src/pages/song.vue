@@ -5,7 +5,7 @@
     <el-button id="expand" class="expand"><plus class="icon"></plus>添加到</el-button>
     <el-button id="expand" class="expand"><download class="icon"></download>下载</el-button>
     <el-button id="expand" class="expand"><edit class="icon"></edit>批量操作</el-button>
-    
+    <UserMusicsTable></UserMusicsTable>
   </div>
   
 </template>
@@ -43,6 +43,7 @@ import BeginIcon from '@/components/BeginIcon.vue';
 import download from '@/components/download.vue';
 import plus from '@/components/plus.vue';
 import edit from '@/components/edit.vue';
+import UserMusicsTable from '@/components/UserMusicsTable.vue';
 defineComponent({
   name: "Song"
 })
