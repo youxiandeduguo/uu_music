@@ -1,15 +1,37 @@
 <template>
-  <div class="avatar_footers">
-    <span v-on:mouseenter="handleFavourEnter" v-on:mouseleave="handleFavourLeave"
-     class="avatar-footer" id="favour">我喜欢</span>
-    <span v-on:mouseenter="handleListsEnter" v-on:mouseleave="handleListsLeave"
-    class="avatar-footer" id="playLists">我创建的歌单</span>
-    <span v-on:mouseenter="handleFollowersEnter" v-on:mouseleave="handleFollowersLeave"
-    class="avatar-footer" id="followers">关注</span>
-    <span v-on:mouseenter="handleFansEnter" v-on:mouseleave="handleFansLeave"
-    class="avatar-footer" id="fans">粉丝</span>
-    <span v-on:mouseenter="handleVideosEnter" v-on:mouseleave="handleVideosLeave"
-    class="avatar-footer" id="videos">我上传的视频</span>
+  <div class="avatar_footers" >
+    <RouterLink 
+    :to="{
+      name:'userfavour'
+    }"
+    class="avatar-footer" active-class="active" id="favour"
+    v-on:mouseenter="handleFavourEnter" v-on:mouseleave="handleFavourLeave"
+    >我喜欢</RouterLink>
+    <RouterLink 
+    :to="{
+      name:'playlists'
+    }"
+    class="avatar-footer" active-class="active" id="playLists"
+    v-on:mouseenter="handleListsEnter" v-on:mouseleave="handleListsLeave"
+    >我创建的歌单</RouterLink>
+    <RouterLink
+    :to="{
+      name:'userfollowers'
+    }" class="avatar-footer" active-class="active" id="followers"
+    v-on:mouseenter="handleFollowersEnter" v-on:mouseleave="handleFollowersLeave"
+    >关注</RouterLink>
+    <RouterLink 
+    :to="{
+      name:'userfans'
+    }"class="avatar-footer" active-class="active" id="fans"
+    v-on:mouseenter="handleFansEnter" v-on:mouseleave="handleFansLeave" 
+    >粉丝</RouterLink>
+    <RouterLink
+    :to="{name:'uservideos'}" class="avatar-footer" id="videos"
+    active-class="active"
+    v-on:mouseenter="handleVideosEnter" v-on:mouseleave="handleVideosLeave"
+    >我上传的视频
+    </RouterLink>
   </div>
 </template>
 
@@ -23,11 +45,16 @@
   padding-bottom: 0;
   font-size: large;
   color: white;
+  text-decoration: none;
+}
+.active{
+  color: #31c27c;
 }
 </style>
 <script setup>
 import {ref} from 'vue'
 let backColor=ref('white')
+let isSelected=ref(1)
 function handleFavourEnter(){
   backColor.value='#31c27c'
   document.querySelector('#favour').style.color=`${backColor.value}`
