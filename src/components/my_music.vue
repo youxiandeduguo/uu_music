@@ -92,16 +92,7 @@
 }
 </style>
 
-
-<script lang="ts">
-    export default {
-        name:"my_music"
-    }
-
-</script>
-
-
-<script lang="ts" setup>
+<script setup>
     import avatarFooter from './avatar_footer.vue'
     import Footer from './my_music_footer.vue'
     import {ref} from 'vue'

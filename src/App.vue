@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div class="menu">
-      <img class='music_icon' src="./image/uu_icon.png" alt="uu音乐">
+      <img class='music_icon' src="/img/uu_icon.png" alt="uu音乐">
       <RouterLink to="/music_pavilion" active-class="active">音乐馆</RouterLink>
       <RouterLink to="/my_music" active-class="active">我的音乐</RouterLink>
       <RouterLink to="/client" active-class="active">客户端</RouterLink>
@@ -102,6 +102,7 @@
     width: 100%;
     flex-direction: column;
     gap: 10px;
+    height: auto;
   }
   .menu{
     display: flex;
@@ -128,6 +129,7 @@
     display: flex;
     justify-content: space-around;
     align-items:center;
+    height: auto;
   }
   hr {
     width: 100%;

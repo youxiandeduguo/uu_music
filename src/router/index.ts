@@ -18,14 +18,16 @@ const router=createRouter(
         history:createWebHistory(),
         routes:[
             {
-                path:"/",
-                redirect:"/music_pavilion"
+                path:"",
+                redirect:"/music_pavilion/home_page"
             },
             {
+                
                 path:"/music_pavilion",
                 component:music_pavilion,
                 name:'music_pavilion',
                 children:[
+                    
                     {
                         path:"home_page",
                         component:home_page,
