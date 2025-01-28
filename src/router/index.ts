@@ -12,6 +12,15 @@ import ladar from '@/components/pavilion_children/ladar.vue'
 import mv from '@/components/pavilion_children/mv.vue'
 import new_disc from '@/components/pavilion_children/new_disc.vue'
 import singer from '@/components/pavilion_children/singer.vue'
+import userFavour from '@/pages/userFavour.vue'
+import PlayLists from '@/pages/playList.vue'
+import Song from '@/pages/song.vue'
+import userFollowers from '@/pages/userFollowers.vue'
+import UserFans from '@/pages/userFans.vue'
+import UserVideo from '@/pages/userVideo.vue'
+import UserPlayList from '@/pages/UserPlayList.vue'
+import Albums from '@/pages/Albums.vue'
+import UserMv from '@/pages/UserMv.vue'
 
 const router=createRouter(
     {
@@ -74,7 +83,58 @@ const router=createRouter(
             {
                 path:"/my_music",
                 component:my_music,
-                name:'my_music'
+                name:'my_music',
+                redirect:"/my_music/userfavour/song",
+                children:[
+                    {
+                        name:"userfavour",
+                        path:"userfavour",
+                        component:userFavour,
+                        children:[
+                            {
+                                name:"song",
+                                path:"song",
+                                component:Song,
+                            },
+                            {
+                                name:'userplaylist',
+                                path:"userplaylist",
+                                component: UserPlayList
+                            },
+                            {
+                                name:'albums',
+                                path:"albums",
+                                component:Albums
+                            },
+                            {
+                                name:'usermv',
+                                path:'usermv',
+                                component:UserMv
+                            } 
+                        ]
+                    },
+                    {
+                        name:"playlists",
+                        path:"PlayLists",
+                        component:PlayLists
+                    },
+                    {
+                        name:"userfollowers",
+                        path:"userfollowers",
+                        component:userFollowers
+                    },
+                    {
+                        name:"userfans",
+                        path:"userfans",
+                        component:UserFans
+                    },
+                    {
+                        name:"uservideos",
+                        path:"uservideos",
+                        component:UserVideo
+                    }
+
+                ]
             },
             {
                 path:"/client",

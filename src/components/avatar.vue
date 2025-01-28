@@ -1,7 +1,7 @@
 <template>
   <div class="demo-type">
     <div>
-      <el-avatar  src="/public/img/avatarUser.png"
+      <el-avatar  src="/img/avatarUser.png"
       :size="120" />
     </div>
   </div>
