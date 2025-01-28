@@ -28,7 +28,9 @@
                 </div>
 
             </el-header>
-            <el-main>Main</el-main>
+            <el-main id="el-main">
+                <RouterView></RouterView>
+            </el-main>
             <el-footer id="el-footer">
                 <Footer></Footer>
             </el-footer>
@@ -36,6 +38,9 @@
     </div>
 </template>
 <style scoped>
+.el-main{
+    height: 500px;
+}
 #el-footer{
     padding-left: 0;
     padding-right: 0;
@@ -76,7 +81,7 @@
 }
 
 #avatarUserContainer{
-    background-color: bisque;
+    /* background-color: bisque; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -84,7 +89,9 @@
 }
 
 .myMusic-header {
-    background-color: rgb(52, 53, 53);
+    /* background-color: rgb(52, 53, 53);
+    background-size: cover; */
+    background-image: url('https://th.bing.com/th/id/OIP.u2pt9U_pCZq4jGzrXbfwigHaEo?rs=1&pid=ImgDetMain');
     background-size: cover;
     height: 320px;
     width: 100%;
@@ -92,7 +99,17 @@
 }
 </style>
 
-<script setup>
+
+<script lang="ts">
+    export default {
+        name:"my_music"
+    }
+
+</script>
+
+
+<script lang="ts" setup>
+    import { RouterView } from 'vue-router'
     import avatarFooter from './avatar_footer.vue'
     import Footer from './my_music_footer.vue'
     import {ref} from 'vue'
