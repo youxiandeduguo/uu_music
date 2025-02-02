@@ -23,7 +23,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        width: 500px;
+        width: 550px;
         height: 200px;
         background-color: red;
     }

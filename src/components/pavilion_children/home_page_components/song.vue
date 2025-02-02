@@ -25,7 +25,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        width: 300px;
+        width: 340px;
         height: 90px;
         background-color: red;
     }
