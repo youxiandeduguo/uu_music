@@ -21,11 +21,15 @@ import UserVideo from '@/pages/userVideo.vue'
 import UserPlayList from '@/pages/UserPlayList.vue'
 import Albums from '@/pages/Albums.vue'
 import UserMv from '@/pages/UserMv.vue'
-
+import login from '@/components/login.vue'
 const router=createRouter(
     {
         history:createWebHistory(),
         routes:[
+            {
+                path:"/login",
+                component: login,
+            },
             {
                 path:"",
                 redirect:"/music_pavilion/home_page"

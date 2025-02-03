@@ -91,7 +91,7 @@
 .myMusic-header {
     /* background-color: rgb(52, 53, 53);
     background-size: cover; */
-    background-image: url('https://th.bing.com/th/id/OIP.u2pt9U_pCZq4jGzrXbfwigHaEo?rs=1&pid=ImgDetMain');
+    background-image: url('https://ts1.cn.mm.bing.net/th/id/R-C.144ef7b0c881d90ec10c5931cafcd8a7?rik=dtFZWmvqt0h7bQ&riu=http%3a%2f%2fimg.51miz.com%2fElement%2f00%2f64%2f92%2f83%2f8b7e2aeb_E649283_dec37284.jpg!%2fquality%2f90%2funsharp%2ftrue%2fcompress%2ftrue%2fformat%2fjpg&ehk=jJTKp4olsTnV2v%2fjVorAG43pl6Zk5L5uzsb%2bTYKc5hc%3d&risl=&pid=ImgRaw&r=0');
     background-size: cover;
     height: 320px;
     width: 100%;

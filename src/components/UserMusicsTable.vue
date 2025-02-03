@@ -1,13 +1,21 @@
 <template>
   <div>
-    <el-table :data="tableData" style="width: 100%">
-    <el-table-column prop="index" class="dateColumn" label=""  width="80"/>
-    <el-table-column prop="name" class="dateColumn" label="歌曲"  width="500"/>
-    <el-table-column prop="singer" label="歌手" width="243" />
-    <el-table-column prop="albums" label="专辑" width="243"/>
-    <el-table-column prop="time" label="时长" width="80"/>
-  </el-table>
+    <el-table :data="tableData" style="width: 100%" class="custom-table">
+    <el-table-column prop="index" class="dateColumn" label=""  width="80" height="50">
+    </el-table-column>
+
+    <el-table-column prop="name" class="dateColumn" label="歌曲"  width="450" height="50">
+      
+      </el-table-column>
+    <el-table-column prop="somebuttons" class="dateColumn" label=""  width="100" height="50">
+      <SomeButtons></SomeButtons>
+    </el-table-column>
+    <el-table-column prop="singer" label="歌手" width="243" height="50" />
+    <el-table-column prop="albums" label="专辑" width="243" height="50"/>
+    <el-table-column prop="time" label="时长" width="80" height="50"/>
+    </el-table>
   </div>
+  
   <div class="info">
     查看更多内容，请下载客户端
   </div>
@@ -17,6 +25,9 @@
   
 </template>
 <style scoped>
+.custom-table {
+  /* height: 200px; 设置行高 */
+}
 .button{
   width:175px;
   height: 41px;
@@ -33,8 +44,11 @@
   color: black;
   font-size: 17px;
 }
+
 </style>
 <script lang="ts" setup>
+import SomeButtons from './someButtons.vue';
+import someButtons from './someButtons.vue';
 const tableData = [
   {
     index: 1,

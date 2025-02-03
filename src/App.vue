@@ -17,9 +17,9 @@
         />
       </div>
       <div class="loginframe">
-        <el-button class="loginbutton">登录</el-button>
+          <el-button class="loginbutton" @click="dialogFormVisible = true">登录</el-button>
       </div>
-      
+      <login v-model="dialogFormVisible"/>
       <el-dropdown class="VIPbutton">
           <el-button type="primary" class="vip-button">
             开通VIP<el-icon class="el-icon--right"><arrow-down /></el-icon>
@@ -56,6 +56,7 @@
   import {RouterView,RouterLink} from 'vue-router'
   import { Search } from '@element-plus/icons-vue'
   import { ArrowDown } from '@element-plus/icons-vue'
+  import login from './components/login.vue'
   export default {
     name:'app'
   }
@@ -63,7 +64,7 @@
 </script>
 
 <script setup lang="ts">
-
+  let dialogFormVisible = ref(false)
   const input = ref('')
   const value = ref('')
 
