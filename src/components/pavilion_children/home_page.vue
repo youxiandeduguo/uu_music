@@ -1,4 +1,5 @@
 <template>
+    <button @click="openNewPage" target="_blank">播放</button>
     <div class="comment">歌单推荐</div>
     <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
         <el-tab-pane label="为你推荐" name="first">
@@ -196,6 +197,10 @@
     let page_index5=ref(0)
     let page_index6=ref(0)
 
+    const openNewPage=()=>{
+        window.open('/player', '_blank');
+    }
+
     const handleClick = (tab: TabsPaneContext, event: Event) => {
         console.log(tab, event)
     }
@@ -234,7 +239,7 @@
         font-family:poppin, Tahoma, Arial, 微软雅黑, sans-serif;
         color: rgb(153, 153, 153);
         width: calc(100% - 200px);
-        height: 500px;
+        height: 200px;
         background-color: rgb(53, 53, 53);
         font-size: 15px;
         font-weight: 400;

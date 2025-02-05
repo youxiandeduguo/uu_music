@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <div class="menu">
+    <div  v-if="nav_ok" class="menu">
       <img class='music_icon' src="/img/uu_icon.png" alt="uu音乐">
       <RouterLink to="/music_pavilion" active-class="active">音乐馆</RouterLink>
       <RouterLink to="/my_music" active-class="active">我的音乐</RouterLink>
@@ -52,8 +52,8 @@
 
 
 <script lang="ts">
-  import { ref } from 'vue'
-  import {RouterView,RouterLink} from 'vue-router'
+  import { ref,computed } from 'vue'
+  import {RouterView,RouterLink,useRoute} from 'vue-router'
   import { Search } from '@element-plus/icons-vue'
   import { ArrowDown } from '@element-plus/icons-vue'
   import login from './components/login.vue'
@@ -68,6 +68,12 @@
   const input = ref('')
   const value = ref('')
 
+  const route = useRoute(); 
+
+  const nav_ok = computed(() => route.meta.nav);
+  const check=()=>{
+    console.log(nav_ok);
+  }
   const options1 = [
     {
       value: 'Option1',
@@ -163,6 +169,7 @@
     height: 45px;
     background-color: #31c27c;
     border: none;
+    color: white;
   }
   .buy-button {
     padding: 10px 20px;

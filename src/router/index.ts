@@ -12,6 +12,7 @@ import ladar from '@/components/pavilion_children/ladar.vue'
 import mv from '@/components/pavilion_children/mv.vue'
 import new_disc from '@/components/pavilion_children/new_disc.vue'
 import singer from '@/components/pavilion_children/singer.vue'
+import music_player from '@/components/pavilion_children/music_player.vue'
 import userFavour from '@/pages/userFavour.vue'
 import PlayLists from '@/pages/playList.vue'
 import Song from '@/pages/song.vue'
@@ -27,59 +28,75 @@ const router=createRouter(
         history:createWebHistory(),
         routes:[
             {
-                path:"/login",
-                component: login,
+                path:"",
+                redirect:"/music_pavilion/home_page",
+                meta: { nav: true },
             },
             {
-                path:"",
-                redirect:"/music_pavilion/home_page"
+                path:"/player",
+                component:music_player,
+                name:"player",
+                meta: { nav: false },
+            },
+            {
+                path:"/login",
+                component: login,
             },
             {
                 
                 path:"/music_pavilion",
                 component:music_pavilion,
                 name:'music_pavilion',
+                meta: { nav: true },
                 children:[
                     
                     {
                         path:"home_page",
                         component:home_page,
-                        name:'home_page'
+                        name:'home_page',
+                        meta: { nav: true },
                     },
                     {
                         path:"singer",
                         component:singer,
-                        name:'singer'
+                        name:'singer',
+                        meta: { nav: true },
                     },
                     {
                         path:"new_disc",
                         component:new_disc,
-                        name:'new_disc'
+                        name:'new_disc',
+                        meta: { nav: true },
                     },
                     {
                         path:"charts",
                         component:charts,
-                        name:'charts'
+                        name:'charts',
+                        meta: { nav: true },
                     },
                     {
                         path:"category_playlists",
                         component:category_playlists,
-                        name:'category_playlists'
+                        name:'category_playlists',
+                        meta: { nav: true },
                     },
                     {
                         path:"ladar",
                         component:ladar,
-                        name:'ladar'
+                        name:'ladar',
+                        meta: { nav: true },
                     },
                     {
                         path:"mv",
                         component:mv,
-                        name:'mv'
+                        name:'mv',
+                        meta: { nav: true },
                     },
                     {
                         path:"digital_album",
                         component:digital_album,
-                        name:'digital_album'
+                        name:'digital_album',
+                        meta: { nav: true },
                     },
                 ]
 
@@ -88,54 +105,64 @@ const router=createRouter(
                 path:"/my_music",
                 component:my_music,
                 name:'my_music',
+                meta: { nav: true },
                 redirect:"/my_music/userfavour/song",
                 children:[
                     {
                         name:"userfavour",
                         path:"userfavour",
                         component:userFavour,
+                        meta: { nav: true },
                         children:[
                             {
                                 name:"song",
                                 path:"song",
                                 component:Song,
+                                meta: { nav: true },
                             },
                             {
                                 name:'userplaylist',
                                 path:"userplaylist",
-                                component: UserPlayList
+                                component: UserPlayList,
+                                meta: { nav: true },
                             },
                             {
                                 name:'albums',
                                 path:"albums",
-                                component:Albums
+                                component:Albums,
+                                meta: { nav: true },
                             },
                             {
                                 name:'usermv',
                                 path:'usermv',
-                                component:UserMv
+                                component:UserMv,
+                                meta: { nav: true },
                             } 
                         ]
                     },
                     {
                         name:"playlists",
                         path:"PlayLists",
-                        component:PlayLists
+                        component:PlayLists,
+                        meta: { nav: true },
                     },
                     {
                         name:"userfollowers",
                         path:"userfollowers",
-                        component:userFollowers
+                        component:userFollowers,
+                        meta: { nav: true },
                     },
                     {
                         name:"userfans",
                         path:"userfans",
-                        component:UserFans
+                        component:UserFans,
+                        meta: { nav: true },
                     },
                     {
                         name:"uservideos",
                         path:"uservideos",
-                        component:UserVideo
+                        component:UserVideo,
+                        meta: { nav: true },
                     }
 
                 ]
@@ -143,17 +170,20 @@ const router=createRouter(
             {
                 path:"/client",
                 component:client,
-                name:'client'
+                name:'client',
+                meta: { nav: true },
             },
             {
                 path:"/open_platform",
                 component:open_platform,
-                name:'open_platform'
+                name:'open_platform',
+                meta: { nav: true },
             },
             {
                 path:"/vip",
                 component:vip,
-                name:'vip'
+                name:'vip',
+                meta: { nav: true },
             }
         ]
     }
