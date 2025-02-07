@@ -1,5 +1,11 @@
 <template>
+    
+    <div style="display: flex; flex-direction: row; gap: 20px;">
+        <button @click="gettest">发送请求</button>
+        <div>{{test}}</div>
+    </div>
     <button @click="openNewPage" target="_blank">播放</button>
+    
     <div class="comment">歌单推荐</div>
     <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
         <el-tab-pane label="为你推荐" name="first">
@@ -183,6 +189,8 @@
     import mv from './home_page_components/mv.vue';
     import { List } from '@element-plus/icons-vue';
     import PC_icon from '/svg/PC.svg'
+    import  axios  from 'axios';
+import { dataType } from 'element-plus/es/components/table-v2/src/common.mjs';
     export default  {
         name:"home_page"
     }
@@ -196,6 +204,23 @@
     let page_index4=ref(0)
     let page_index5=ref(0)
     let page_index6=ref(0)
+
+    let test=ref('')
+    async function gettest(){
+
+        try {
+            let {data} = await axios.get('http://127.0.0.1:8000/test/');
+            test.value=data
+            console.log(test.value)
+        } catch (error) {
+            const err = error
+            console.log(err)
+        }
+
+    }
+
+
+
 
     const openNewPage=()=>{
         window.open('/player', '_blank');
