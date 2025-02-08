@@ -1,6 +1,6 @@
 <template>
     <div class="frame">
-        <div class="f1">图片</div>
+        <img class="f1" :src="imgsrc" :alt="imgsrc"></img>
     </div>
 </template>
 
@@ -13,7 +13,8 @@
 </script>
 
 <script lang="ts" setup>
-    // const props=defineProps<{ num: number }>();
+    const props=defineProps<{ num: number }>();
+    let imgsrc=ref("/img/new_song/"+props.num+".jpg")
 </script>
 
 <style scoped>
@@ -25,20 +26,21 @@
         justify-content: center;
         width: 550px;
         height: 200px;
-        background-color: red;
     }
 
     .f1{
-        width: 100%;
+        width: 800px;
         display: flex; 
         flex-direction: column;
         /* align-items: center; */
         justify-content: center;
-        height: 30px;
+        height: 200px;
         text-align: left;
         padding-left: 30px;
         font-family: poppin, Tahoma, Arial, 微软雅黑, sans-serif;
         font-size: 14px;
+        object-fit: cover;
+
         
     }
 

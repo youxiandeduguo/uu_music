@@ -38,15 +38,15 @@
                 <el-carousel class="song_car" indicator-position="outside" @change="handleChange2" :autoplay="false" :interval="9999999" height="auto">
                     <el-carousel-item v-for="item in 5" :key="item">
                         <div class="song_frame" v-if="page_index2===(item-1)">
-                            <song></song>
-                            <song></song>
-                            <song></song>
-                            <song></song>
-                            <song></song>
-                            <song></song>
-                            <song></song>
-                            <song></song>
-                            <song></song>
+                            <song :num="(item-1)*9+1"></song>
+                            <song :num="(item-1)*9+2"></song>
+                            <song :num="(item-1)*9+3"></song>
+                            <song :num="(item-1)*9+4"></song>
+                            <song :num="(item-1)*9+5"></song>
+                            <song :num="(item-1)*9+6"></song>
+                            <song :num="(item-1)*9+7"></song>
+                            <song :num="(item-1)*9+8"></song>
+                            <song :num="(item-1)*9+9"></song>
                         </div>
                     </el-carousel-item>
                 </el-carousel>
@@ -67,8 +67,8 @@
     <el-carousel class="recommend_car" indicator-position="outside" @change="handleChange3" :autoplay="false" :interval="9999999" height="auto">
         <el-carousel-item v-for="item in 1" :key="item" class="recommend_item">
             <div class="recommend_frame" v-if="page_index3===(item-1)">
-                <recommend></recommend>
-                <recommend></recommend>
+                <recommend :num="(item-1)+1"></recommend>
+                <recommend :num="(item-1)+2"></recommend>
             </div>
         </el-carousel-item>
     </el-carousel>
@@ -79,18 +79,19 @@
         <el-tab-pane label="为你推荐" name="first">
             <div class="carousel-wrapper">
                 <el-carousel class="disc_car" indicator-position="outside" @change="handleChange4" :autoplay="false" :interval="9999999" height="auto">
-                    <el-carousel-item v-for="item in 5" :key="item">
+                    <el-carousel-item v-for="item in 4" :key="item">
                         <div class="disc_frame" v-if="page_index4===(item-1)">
-                            <disc></disc>
-                            <disc></disc>
-                            <disc></disc>
-                            <disc></disc>
-                            <disc></disc>
-                            <disc></disc>
-                            <disc></disc>
-                            <disc></disc>
-                            <disc></disc>
-                            <disc></disc>
+                            <disc :num="(4-item)*10+1"></disc>
+                            <disc :num="(4-item)*10+2"></disc>
+                            <disc :num="(4-item)*10+3"></disc>
+                            <disc :num="(4-item)*10+4"></disc>
+                            <disc :num="(4-item)*10+5"></disc>
+                            <disc :num="(4-item)*10+6"></disc>
+                            <disc :num="(4-item)*10+7"></disc>
+                            <disc :num="(4-item)*10+8"></disc>
+                            <disc :num="(4-item)*10+9"></disc>
+                            <disc :num="(4-item)*10+10"></disc>
+
                         </div>
                     </el-carousel-item>
                 </el-carousel>
@@ -109,11 +110,11 @@
     <el-carousel class="list_car" indicator-position="outside" @change="handleChange5" :autoplay="false" :interval="9999999" height="auto">
         <el-carousel-item v-for="item in 1" :key="item">
             <div class="list_frame" v-if="page_index5===(item-1)">
-                <list></list>
-                <list></list>
-                <list></list>
-                <list></list>
-                <list></list>
+                <list :num="0"></list>
+                <list :num="1"></list>
+                <list :num="2"></list>
+                <list :num="3"></list>
+                <list :num="4"></list>
             </div>
         </el-carousel-item>
     </el-carousel>
@@ -125,18 +126,18 @@
         <el-tab-pane label="为你推荐" name="first">
             <div class="carousel-wrapper">
                 <el-carousel class="mv_car" indicator-position="outside" @change="handleChange6" :autoplay="false" :interval="9999999" height="auto">
-                    <el-carousel-item v-for="item in 5" :key="item">
+                    <el-carousel-item v-for="item in 4" :key="item">
                         <div class="mv_frame" v-if="page_index6===(item-1)">
-                            <mv></mv>
-                            <mv></mv>
-                            <mv></mv>
-                            <mv></mv>
-                            <mv></mv>
-                            <mv></mv>
-                            <mv></mv>
-                            <mv></mv>
-                            <mv></mv>
-                            <mv></mv>
+                            <mv :num="(4-item)*10+1"></mv>
+                            <mv :num="(4-item)*10+2"></mv>
+                            <mv :num="(4-item)*10+3"></mv>
+                            <mv :num="(4-item)*10+4"></mv>
+                            <mv :num="(4-item)*10+5"></mv>
+                            <mv :num="(4-item)*10+6"></mv>
+                            <mv :num="(4-item)*10+7"></mv>
+                            <mv :num="(4-item)*10+8"></mv>
+                            <mv :num="(4-item)*10+9"></mv>
+                            <mv :num="(4-item)*10+10"></mv>
                         </div>
                     </el-carousel-item>
                 </el-carousel>
@@ -396,12 +397,15 @@ import { dataType } from 'element-plus/es/components/table-v2/src/common.mjs';
     }
 
     :deep(.songlist_car) .el-carousel__indicators--horizontal {
-    margin-top: 80px;
+        margin-top: 80px;
     }
     :deep(.song_car) .el-carousel__indicators--horizontal {
         margin-top: 20px;
     }
     :deep(.recommend_car) .el-carousel__indicators--horizontal {
+        margin-top: 20px;
+    }
+    :deep(.mv_car) .el-carousel__indicators--horizontal {
         margin-top: 20px;
     }
     :deep(.el-carousel__arrow) {
