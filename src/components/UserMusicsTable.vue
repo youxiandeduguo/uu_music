@@ -25,9 +25,7 @@
   
 </template>
 <style scoped>
-.custom-table {
-  /* height: 200px; 设置行高 */
-}
+
 .button{
   width:175px;
   height: 41px;

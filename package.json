@@ -15,6 +15,7 @@
     "axios": "^1.7.9",
     "element-plus": "^2.9.3",
     "ionicons": "^7.4.0",
+    "pinia": "^2.3.1",
     "vicons": "^0.0.1",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"

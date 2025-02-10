@@ -17,9 +17,9 @@
         />
       </div>
       <div class="loginframe">
-          <el-button class="loginbutton" @click="dialogFormVisible = true">登录</el-button>
+          <el-button class="loginbutton" @click="loginStore.dialogFormVisible = true">登录</el-button>
       </div>
-      <login v-model="dialogFormVisible"/>
+      <login v-model="loginStore.dialogFormVisible"/>
       <el-dropdown class="VIPbutton">
           <el-button type="primary" class="vip-button">
             开通VIP<el-icon class="el-icon--right"><arrow-down /></el-icon>
@@ -57,6 +57,7 @@
   import { Search } from '@element-plus/icons-vue'
   import { ArrowDown } from '@element-plus/icons-vue'
   import login from './components/login.vue'
+  import {useLoginStore} from '@/store/login.ts'
   export default {
     name:'app'
   }
@@ -64,7 +65,8 @@
 </script>
 
 <script setup lang="ts">
-  let dialogFormVisible = ref(false)
+  // let dialogFormVisible = ref(false)
+  let loginStore=useLoginStore()
   const input = ref('')
   const value = ref('')
 

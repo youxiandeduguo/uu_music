@@ -9,7 +9,7 @@
                             <avatarUser></avatarUser>
                         </el-header>
                         <el-main id="userIdContainer">
-                            <strong id="userIDdisplay">{{ userId }}</strong>
+                            <strong id="userIDdisplay">{{ username }}</strong>
                             <div id='expandContainer'>
                                 <div class="expandInfo">
                                     <div v-on:mouseenter="handle1Enter" v-on:mouseleave="handle1Leave" class="handle1Info">&nbsp&nbsp{{ follows }}</div>
@@ -109,12 +109,16 @@
 
 
 <script lang="ts" setup>
+    
     import { RouterView } from 'vue-router'
     import avatarFooter from './avatar_footer.vue'
     import Footer from './my_music_footer.vue'
     import {ref} from 'vue'
     import avatarUser from './avatar.vue'
-    let userId=ref("深水先生")
+    import {useUserStore} from "/src/store/user.ts"
+    let username=useUserStore().username
+    // alert(username)
+    // let userId=ref("深水先生")
     let follows=ref(1)
     let fans=ref(0)
     let mouseenterColor=ref('white');
