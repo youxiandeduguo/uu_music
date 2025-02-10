@@ -36,7 +36,7 @@
                     </el-button>
                 </div>
                 <div style="background-color: transparent;">
-                    <el-table :data="tableData" style="width: 100%;" @cell-mouse-enter="changeIndex" row-style="background-color: transparent; height: 60px" header-row-style="background-color: transparent;">
+                    <el-table :data="tableData" style="width: 100%;" @cell-mouse-enter="changeIndex" @cell-mouse-leave="deleteindex" row-style="background-color: transparent; height: 60px" header-row-style="background-color: transparent;">
                         <el-table-column type="selection" width="55" />
                         <el-table-column prop="name" label="歌曲" width="300">
                             <template #default="{row}">
@@ -87,10 +87,10 @@
             </div>
 
             <div class="line2_right">
-                <div>
-                    <div class="cover">封面</div>
-                    <div class="lyric">歌词</div>
-                </div>
+                <img class="cover" src="/music/background.png" alt="封面"></img>
+                <el-scrollbar class="lyric">
+                    <p v-for="item in 5" :key="item" class="scrollbar-demo-item">歌词</p>
+                </el-scrollbar>
             </div>
 
 
@@ -98,22 +98,33 @@
 
 
         <div class="music_menu">
+
+            <audio  @timeupdate="updatetime" ref='music' src="/music/苏星捷 - 听悲伤的情歌.mp3"></audio>
+
             <button class="table_btn">
                 <svg t="1738747234397" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="19616" width="30" height="30"><path d="M364.302083 465.602819L687.954365 218.588294c38.416414-29.327534 93.791393-1.929039 93.791392 46.396277v494.029051c0 48.325316-55.374979 75.725617-93.791392 46.398084L364.302083 558.397181c-30.600916-23.357989-30.600916-69.436372 0-92.794362zM238.945254 780.798397V451.684117v-164.562559c0-19.628152-5.904521-60.475733 17.057907-75.841215 25.523642-17.068744 59.747828 1.210165 59.747828 31.919454v493.676839c0 19.628152 5.915358 60.473927-17.047069 75.841215-25.53448 17.068744-59.758666-1.211971-59.758666-31.919454z" fill="currentColor" p-id="19617"></path></svg>
             </button>
-            <button class="table_btn">
+
+
+            <button v-if="play_pause" class="table_btn" @click="playmusic">
+                <svg t="1739186535839" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4177" width="30" height="30"><path d="M231.253333 929.28a25.173333 25.173333 0 0 1-25.173333-25.173333V119.893333a25.173333 25.173333 0 0 1 39.68-20.48l561.066667 392.106667a25.173333 25.173333 0 0 1 0 42.666667L245.76 924.586667a25.173333 25.173333 0 0 1-14.506667 4.693333z" fill="currentColor" p-id="4178"></path></svg>
+            </button>
+
+            <button v-else class="table_btn" @click="pausemusic">
                 <svg t="1738747275299" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="20592" width="30" height="30"><path d="M128 106.858667C128 94.976 137.621333 85.333333 149.12 85.333333h85.76c11.648 0 21.12 9.6 21.12 21.525334V917.12c0 11.882667-9.621333 21.525333-21.12 21.525333H149.12A21.290667 21.290667 0 0 1 128 917.141333V106.88z m640 0c0-11.882667 9.621333-21.525333 21.12-21.525334h85.76c11.648 0 21.12 9.6 21.12 21.525334V917.12c0 11.882667-9.621333 21.525333-21.12 21.525333h-85.76a21.290667 21.290667 0 0 1-21.12-21.525333V106.88z" fill="currentColor" p-id="20593"></path></svg>
             </button>
+
+
             <button class="table_btn">
                 <svg t="1738747305055" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2734" width="30" height="30"><path d="M655.706179 465.602819L332.053897 218.588294c-38.414608-29.327534-93.791393-1.929039-93.791392 46.396277v494.029051c0 48.325316 55.376785 75.725617 93.791392 46.398084l323.652282-247.014525c30.602722-23.357989 30.602722-69.436372 0-92.794362zM781.064814 780.798397V451.684117v-164.562559c0-19.628152 5.904521-60.475733-17.057907-75.841215-25.523642-17.068744-59.747828 1.210165-59.747828 31.919454v493.676839c0 19.628152-5.915358 60.473927 17.047069 75.841215 25.532673 17.068744 59.758666-1.211971 59.758666-31.919454z" fill="currentColor" p-id="2735"></path></svg>
             </button>
             <div class="menu_center">
                 <div class="menu_center_child">
-                    <div>歌名-作者</div>
-                    <div>时长</div>
+                    <div>听悲伤的情歌-苏星捷</div>
+                    <div>{{ formatime(music?.currentTime||null) }}/{{ formatime(music?.duration||null) }}</div>
                 </div>
                 <div>
-                    <el-slider v-model="progress" :show-tooltip="false" />
+                    <el-slider v-model="progress" @input="settime" :show-tooltip="false" />
                 </div>
             </div>
 
@@ -141,12 +152,15 @@
 
 
 
-            <button class="table_btn">
-                <svg t="1738748902041" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6691" width="35" height="35"><path d="M260.256 356.576l204.288-163.968a32 32 0 0 1 52.032 24.96v610.432a32 32 0 0 1-51.968 24.992l-209.92-167.552H96a32 32 0 0 1-32-32v-264.864a32 32 0 0 1 32-32h164.256zM670.784 720.128a32 32 0 0 1-44.832-45.664 214.08 214.08 0 0 0 64.32-153.312 213.92 213.92 0 0 0-55.776-144.448 32 32 0 1 1 47.36-43.04 277.92 277.92 0 0 1 72.416 187.488 278.08 278.08 0 0 1-83.488 198.976zM822.912 858.88a32 32 0 1 1-45.888-44.608A419.008 419.008 0 0 0 896 521.152c0-108.704-41.376-210.848-114.432-288.384a32 32 0 0 1 46.592-43.872c84.16 89.28 131.84 207.04 131.84 332.256 0 127.84-49.76 247.904-137.088 337.728z" fill="currentColor" p-id="6692"></path></svg>
+            <button class="table_btn" v-if="voice_mode" @click="closevoice">
+                <svg t="1739190768400" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5170" width="35" height="35"><path d="M257.493333 322.4l215.573334-133.056c24.981333-15.413333 57.877333-7.914667 73.493333 16.746667 5.301333 8.373333 8.106667 18.048 8.106667 27.914666v555.989334C554.666667 819.093333 530.784 842.666667 501.333333 842.666667c-9.994667 0-19.786667-2.773333-28.266666-8L257.493333 701.6H160c-41.237333 0-74.666667-33.013333-74.666667-73.738667V396.138667c0-40.725333 33.429333-73.738667 74.666667-73.738667h97.493333z m26.133334 58.4a32.298667 32.298667 0 0 1-16.96 4.8H160c-5.888 0-10.666667 4.714667-10.666667 10.538667v231.733333c0 5.813333 4.778667 10.538667 10.666667 10.538667h106.666667c5.994667 0 11.872 1.664 16.96 4.8L490.666667 770.986667V253.013333L283.626667 380.8zM800.906667 829.653333a32.288 32.288 0 0 1-45.248-0.757333 31.317333 31.317333 0 0 1 0.768-44.693333c157.653333-150.464 157.653333-393.962667 0-544.426667a31.317333 31.317333 0 0 1-0.768-44.682667 32.288 32.288 0 0 1 45.248-0.757333c183.68 175.306667 183.68 460.010667 0 635.317333z m-106.901334-126.186666a32.288 32.288 0 0 1-45.248-1.216 31.328 31.328 0 0 1 1.237334-44.672c86.229333-80.608 86.229333-210.56 0-291.178667a31.328 31.328 0 0 1-1.237334-44.672 32.288 32.288 0 0 1 45.248-1.216c112.885333 105.546667 112.885333 277.418667 0 382.965333z" fill="currentColor" p-id="5171"></path></svg>
             </button>
-            <div>音量</div>
+               
+            <button class="table_btn" v-else @click="openvoice">
+                <svg t="1739190815647" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5317" width="35" height="35"><path d="M128 420.576v200.864h149.12l175.456 140.064V284.288l-169.792 136.288H128z m132.256-64l204.288-163.968a32 32 0 0 1 52.032 24.96v610.432a32 32 0 0 1-51.968 24.992l-209.92-167.552H96a32 32 0 0 1-32-32v-264.864a32 32 0 0 1 32-32h164.256zM752 458.656L870.4 300.8a32 32 0 1 1 51.2 38.4L792 512l129.6 172.8a32 32 0 0 1-51.2 38.4l-118.4-157.856-118.4 157.856a32 32 0 0 1-51.2-38.4l129.6-172.8-129.6-172.8a32 32 0 0 1 51.2-38.4l118.4 157.856z" fill="currentColor" p-id="5318"></path></svg>
+            </button>
             <div style="width: 60px;">
-                <el-slider v-model="voice" :show-tooltip="false" />
+                <el-slider v-model="voice" @input="updatevoice" :show-tooltip="false" />
             </div>
             
 
@@ -172,14 +186,67 @@
     songer: string
     time: string
     }
+
+    const music=ref<HTMLAudioElement | null>(null)
+
+    const playmusic=()=>{
+        if(music.value){
+            music.value.play();
+            play_pause.value=false;
+        }
+    }
+
+    const pausemusic=()=>{
+        if(music.value){
+            music.value.pause();
+            play_pause.value=true;
+        }
+    }
+
+    const updatetime=()=>{
+        if(music.value){
+            progress.value=music.value.currentTime/music.value.duration*100;
+        }
+    }
+
+    const settime=()=>{
+        if(music.value){
+            music.value.currentTime=progress.value/100*music.value.duration;
+        }
+    }
+
+    const updatevoice=()=>{
+        console.log(voice.value)
+        
+        if(music.value){
+            music.value.volume=voice.value/100;
+        }
+    }
+
+    const formatime=(seconds: number|null)=>{
+        if(seconds){
+            const min=Math.floor(seconds/60);
+            const sec=Math.floor(seconds)%60;
+            return String(min).padStart(2,'0')+":"+String(sec).padStart(2,'0');
+        }
+    }
+
     let clear_mode=ref(true);
-    let progress=ref(0)
-    let voice=ref(0)
+    let progress=ref()
+    let voice=ref(50)
+    let temp_voice=0
     let index=ref(-1)
+    let play_pause=ref(true);
+    let voice_mode=ref(true);
+
+
     const changeIndex=(row: Music)=>{
         index.value = tableData.findIndex(item => 
             item.name === row.name && item.songer === row.songer && item.time === row.time
         );
+    }
+    const deleteindex=()=>{
+        index.value=-1;
     }
     const getIndex=(row: Music)=>{
         return tableData.findIndex(item => 
@@ -187,30 +254,31 @@
         );
     }
 
+    const closevoice=()=>{
+        if(music.value){
+            voice_mode.value=false;
+            temp_voice=music.value.volume;
+            music.value.volume=0;
+            voice.value=0;
+        }
+    }
+
+    const openvoice=()=>{
+        if(music.value){
+            voice_mode.value=true;
+            music.value.volume=temp_voice;
+            voice.value=temp_voice;
+        }
+    }
 
     const changeMode=()=>{
         clear_mode.value=!clear_mode.value;
     }
     const tableData: Music[] = [
         {
-            name:"放纵L",
-            songer:"李彦雯",
-            time:"03:23"
-        },
-        {
-            name:"爱你(青春离别版)",
-            songer:"高睿",
-            time:"03:44"
-        },
-        {
-            name:"我爱你不问归期",
-            songer:"白小白",
-            time:"04:14"
-        },
-        {
-            name:"梦见春天野花开",
-            songer:"自动挡吉他手/贝果乐园",
-            time:"03:22"
+            name:"听悲伤的情歌",
+            songer:"苏星捷",
+            time:"02:37"
         },
     ]
 
@@ -223,7 +291,19 @@
         flex-direction: column;
         gap: 70px;
         height: 100%;
-        background-color: cornflowerblue;
+        position: relative;
+    }
+    .main:before{
+        content: "";
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        filter: blur(8px);
+        background-size: cover;
+        background-image:url('/music/background.png');
+        z-index: -1;
     }
     .line1{
         display: flex;
@@ -243,6 +323,11 @@
     }
     .line2_left{
         background-color: transparent;
+    }
+    .line2_right{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         
     }
     .el-table{
@@ -269,14 +354,17 @@
         height: 0px;
     }
     .cover{
-        width: 300px;
-        height: 200px;
+        width: 200px;
+        height: 150px;
         background-color: red;
     }
     .lyric{
         width: 300px;
-        height: 250px;
-        background-color: blue;
+        height: 300px;
+        color: #e1e1e1cc;
+        font-size: 14px;
+        font-family: poppin,Tahoma,Arial,\5FAE\8F6F\96C5\9ED1,sans-serif;
+        text-align: center;
     }
     .music_menu{
         display: flex;
@@ -292,6 +380,13 @@
     .menu_center_child{
         display: flex;
         flex-direction: row;
+        color: #e1e1e1cc;
+        font-size: 14px;
+        font-family: poppin,Tahoma,Arial,\5FAE\8F6F\96C5\9ED1,sans-serif;
+        justify-content: space-between;
+
+
+
     }
     .player-btn{
             background-color: transparent;
@@ -370,7 +465,7 @@
     }
 
     .el-slider__button{
-            transform: translateY(-2px); 
+            transform: translateY(-3px); 
     }
     .clear{
         display: flex;
