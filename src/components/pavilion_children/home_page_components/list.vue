@@ -135,7 +135,7 @@
     }
     .f4{
         height: 80px;
-        padding-left:50px ;
+        padding-left:0 ;
         width: 100%;
         font-family: poppin, Tahoma, Arial, 微软雅黑, sans-serif;
         font-size: 14px;

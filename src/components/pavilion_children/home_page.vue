@@ -1,10 +1,5 @@
 <template>
     
-    <div style="display: flex; flex-direction: row; gap: 20px;">
-        <button @click="gettest">发送请求</button>
-        <div>{{test}}</div>
-    </div>
-    <button @click="openNewPage" target="_blank">播放</button>
     
     <div class="comment">歌单推荐</div>
     <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
@@ -13,11 +8,21 @@
                 <el-carousel class="songlist_car" indicator-position="outside" @change="handleChange" :autoplay="false" :interval="9999999" height="auto">
                     <el-carousel-item v-for="item in 5" :key="item">
                         <div class="music_frame" v-if="page_index===(item-1)">
-                            <songlist :num="(item-1)*5+0"></songlist>
-                            <songlist :num="(item-1)*5+1"></songlist>
-                            <songlist :num="(item-1)*5+2"></songlist>
-                            <songlist :num="(item-1)*5+3"></songlist>
-                            <songlist :num="(item-1)*5+4"></songlist>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <songlist :num="(item-1)*5+0"></songlist>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <songlist :num="(item-1)*5+1"></songlist>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <songlist :num="(item-1)*5+2"></songlist>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <songlist :num="(item-1)*5+3"></songlist>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <songlist :num="(item-1)*5+4"></songlist>
+                            </button>
                         </div>
                     </el-carousel-item>
                 </el-carousel>
@@ -38,15 +43,16 @@
                 <el-carousel class="song_car" indicator-position="outside" @change="handleChange2" :autoplay="false" :interval="9999999" height="auto">
                     <el-carousel-item v-for="item in 5" :key="item">
                         <div class="song_frame" v-if="page_index2===(item-1)">
-                            <song :num="(item-1)*9+1"></song>
-                            <song :num="(item-1)*9+2"></song>
-                            <song :num="(item-1)*9+3"></song>
-                            <song :num="(item-1)*9+4"></song>
-                            <song :num="(item-1)*9+5"></song>
-                            <song :num="(item-1)*9+6"></song>
-                            <song :num="(item-1)*9+7"></song>
-                            <song :num="(item-1)*9+8"></song>
-                            <song :num="(item-1)*9+9"></song>
+                            <button @click="openNewPage" target="_blank" class="item_button"><song :num="(item-1)*9+1"></song></button>
+                            <button @click="openNewPage" target="_blank" class="item_button"><song :num="(item-1)*9+2"></song></button>
+                            <button @click="openNewPage" target="_blank" class="item_button"><song :num="(item-1)*9+3"></song></button>
+                            <button @click="openNewPage" target="_blank" class="item_button"><song :num="(item-1)*9+4"></song></button>
+                            <button @click="openNewPage" target="_blank" class="item_button"><song :num="(item-1)*9+5"></song></button>
+                            <button @click="openNewPage" target="_blank" class="item_button"><song :num="(item-1)*9+6"></song></button>
+                            <button @click="openNewPage" target="_blank" class="item_button"><song :num="(item-1)*9+7"></song></button>
+                            <button @click="openNewPage" target="_blank" class="item_button"><song :num="(item-1)*9+8"></song></button>
+                            <button @click="openNewPage" target="_blank" class="item_button"><song :num="(item-1)*9+9"></song></button>
+
                         </div>
                     </el-carousel-item>
                 </el-carousel>
@@ -67,8 +73,8 @@
     <el-carousel class="recommend_car" indicator-position="outside" @change="handleChange3" :autoplay="false" :interval="9999999" height="auto">
         <el-carousel-item v-for="item in 1" :key="item" class="recommend_item">
             <div class="recommend_frame" v-if="page_index3===(item-1)">
-                <recommend :num="(item-1)+1"></recommend>
-                <recommend :num="(item-1)+2"></recommend>
+                <button @click="openNewPage" target="_blank" class="item_button"><recommend :num="(item-1)+1"></recommend></button>
+                <button @click="openNewPage" target="_blank" class="item_button"><recommend :num="(item-1)+2"></recommend></button>
             </div>
         </el-carousel-item>
     </el-carousel>
@@ -81,16 +87,37 @@
                 <el-carousel class="disc_car" indicator-position="outside" @change="handleChange4" :autoplay="false" :interval="9999999" height="auto">
                     <el-carousel-item v-for="item in 4" :key="item">
                         <div class="disc_frame" v-if="page_index4===(item-1)">
-                            <disc :num="(4-item)*10+1"></disc>
-                            <disc :num="(4-item)*10+2"></disc>
-                            <disc :num="(4-item)*10+3"></disc>
-                            <disc :num="(4-item)*10+4"></disc>
-                            <disc :num="(4-item)*10+5"></disc>
-                            <disc :num="(4-item)*10+6"></disc>
-                            <disc :num="(4-item)*10+7"></disc>
-                            <disc :num="(4-item)*10+8"></disc>
-                            <disc :num="(4-item)*10+9"></disc>
-                            <disc :num="(4-item)*10+10"></disc>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <disc :num="(4-item)*10+1"></disc>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <disc :num="(4-item)*10+2"></disc>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <disc :num="(4-item)*10+3"></disc>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <disc :num="(4-item)*10+4"></disc>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <disc :num="(4-item)*10+5"></disc>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <disc :num="(4-item)*10+6"></disc>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <disc :num="(4-item)*10+7"></disc>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <disc :num="(4-item)*10+8"></disc>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <disc :num="(4-item)*10+9"></disc>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <disc :num="(4-item)*10+10"></disc>
+                            </button>
+
 
                         </div>
                     </el-carousel-item>
@@ -110,11 +137,21 @@
     <el-carousel class="list_car" indicator-position="outside" @change="handleChange5" :autoplay="false" :interval="9999999" height="auto">
         <el-carousel-item v-for="item in 1" :key="item">
             <div class="list_frame" v-if="page_index5===(item-1)">
-                <list :num="0"></list>
-                <list :num="1"></list>
-                <list :num="2"></list>
-                <list :num="3"></list>
-                <list :num="4"></list>
+                <button @click="openNewPage" target="_blank" class="item_button">
+                    <list :num="0"></list>
+                </button>
+                <button @click="openNewPage" target="_blank" class="item_button">
+                    <list :num="1"></list>
+                </button>
+                <button @click="openNewPage" target="_blank" class="item_button">
+                    <list :num="2"></list>
+                </button>
+                <button @click="openNewPage" target="_blank" class="item_button">
+                    <list :num="3"></list>
+                </button>
+                <button @click="openNewPage" target="_blank" class="item_button">
+                    <list :num="4"></list>
+                </button>
             </div>
         </el-carousel-item>
     </el-carousel>
@@ -128,16 +165,36 @@
                 <el-carousel class="mv_car" indicator-position="outside" @change="handleChange6" :autoplay="false" :interval="9999999" height="auto">
                     <el-carousel-item v-for="item in 4" :key="item">
                         <div class="mv_frame" v-if="page_index6===(item-1)">
-                            <mv :num="(4-item)*10+1"></mv>
-                            <mv :num="(4-item)*10+2"></mv>
-                            <mv :num="(4-item)*10+3"></mv>
-                            <mv :num="(4-item)*10+4"></mv>
-                            <mv :num="(4-item)*10+5"></mv>
-                            <mv :num="(4-item)*10+6"></mv>
-                            <mv :num="(4-item)*10+7"></mv>
-                            <mv :num="(4-item)*10+8"></mv>
-                            <mv :num="(4-item)*10+9"></mv>
-                            <mv :num="(4-item)*10+10"></mv>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <mv :num="(4-item)*10+1"></mv>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <mv :num="(4-item)*10+2"></mv>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <mv :num="(4-item)*10+3"></mv>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <mv :num="(4-item)*10+4"></mv>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <mv :num="(4-item)*10+5"></mv>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <mv :num="(4-item)*10+6"></mv>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <mv :num="(4-item)*10+7"></mv>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <mv :num="(4-item)*10+8"></mv>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <mv :num="(4-item)*10+9"></mv>
+                            </button>
+                            <button @click="openNewPage" target="_blank" class="item_button">
+                                <mv :num="(4-item)*10+10"></mv>
+                            </button>
                         </div>
                     </el-carousel-item>
                 </el-carousel>
@@ -160,7 +217,7 @@
                 <div>PC版</div>
             </div>
             <div class="icon_item"> 
-                <svg t="1738496596027" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1679" width="80" height="80"><path d="M960 108.8c35.2 0 64 28.8 64 64v518.4c0 35.2-28.8 64-64 64H646.4l57.6 115.2c6.4 16 0 35.2-12.8 41.6-3.2 3.2-9.6 3.2-12.8 3.2H348.8c-19.2 0-32-12.8-32-32 0-6.4 0-9.6 3.2-12.8l57.6-115.2H64c-35.2 0-64-28.8-64-64V172.8c0-35.2 28.8-64 64-64h896zM598.4 294.4c-35.2-3.2-67.2 19.2-86.4 19.2-16 0-41.6-19.2-70.4-19.2-35.2 0-70.4 22.4-89.6 54.4-38.4 64-9.6 163.2 25.6 217.6l6.4 9.6c16 22.4 35.2 48 60.8 44.8 28.8 0 38.4-19.2 70.4-19.2 32 0 41.6 19.2 70.4 16 28.8 0 48-25.6 67.2-54.4s28.8-60.8 28.8-60.8h-3.2C665.6 496 624 473.6 624 416c0-54.4 44.8-80 48-83.2-19.2-32-57.6-38.4-73.6-38.4z m0-105.6c-22.4 0-48 16-64 32-12.8 16-25.6 41.6-22.4 67.2 25.6 0 48-12.8 64-32 12.8-16 25.6-41.6 22.4-67.2z" fill="#888888" p-id="1680"></path></svg>
+                <svg t="1738496596027" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1679" width="80" height="80"><path d="M960 108.8c35.2 0 64 28.8 64 64v518.4c0 35.2-28.8 64-64 64H646.4l57.6 115.2c6.4 16 0 35.2-12.8 41.6-3.2 3.2-9.6 3.2-12.8 3.2H348.8c-19.2 0-32-12.8-32-32 0-6.4 0-9.6 3.2-12.8l57.6-115.2H64c-35.2 0-64-28.8-64-64V172.8c0-35.2 28.8-64 64-64h896zM598.4 294.4c-35.2-3.2-67.2 19.2-86.4 19.2-16 0-41.6-19.2-70.4-19.2-35.2 0-70.4 22.4-89.6 54.4-38.4 64-9.6 163.2 25.6 217.6l6.4 9.6c16 22.4 35.2 48 60.8 44.8 28.8 0 38.4-19.2 70.4-19.2 32 0 41.6 19.2 70.4 16 28.8 0 48-25.6 67.2-54.4s28.8-60.8 28.8-60.8h-3.2C665.6 496 624 473.6 624 416c0-54.4 44.8-80 48-83.2-19.2-32-57.6-38.4-73.6-38.4z m0-105.6c-22.4 0-48 16-64 32-12.8 16-25.6 41.6-22.4 67.2 25.6 0 48-12.8 64-32 12.8-16 25.6-41.6 22.4-67.2z" fill="#040000" p-id="1680"></path></svg>
                 <div>Mac版</div>
             </div>
             <div class="icon_item">
@@ -426,6 +483,9 @@ import { dataType } from 'element-plus/es/components/table-v2/src/common.mjs';
     }
     .comment{
         font-size: 30px;
+    }
+    .item_button{
+        border: none;
     }
 
 </style>

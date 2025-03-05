@@ -49,6 +49,11 @@ const router=createRouter(
                 name:'music_pavilion',
                 meta: { nav: true },
                 children:[
+                    {
+                        path:"/music_pavilion",
+                        redirect:"/music_pavilion/home_page",
+                        meta: { nav: true },
+                    },
                     
                     {
                         path:"home_page",
